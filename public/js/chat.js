@@ -24,8 +24,6 @@ const autoScroll = () => {
     const newMessageMargin = parseInt(newMessageStyles.marginBottom);
     const newMessageHeight = $newMessage.offsetHeight + newMessageMargin;
 
-    console.log(newMessageHeight);
-
     // Visible height
     const visibleHeight = $messages.offsetHeight;
 
@@ -41,7 +39,6 @@ const autoScroll = () => {
 };
 
 socket.on('message', (message) => {
-    console.log(message);
     const html = Mustache.render(messageTemplate, {
         username: message.username,
         message: message.text,
@@ -52,7 +49,6 @@ socket.on('message', (message) => {
 });
 
 socket.on('locationMessage', (message) => {
-    console.log(message);
     const html = Mustache.render(locationTemplate, {
         username: message.username,
         url: message.url,
@@ -103,7 +99,6 @@ $locationButton.addEventListener('click', () => {
             longitude: position.coords.longitude
         },  () => {
             $locationButton.removeAttribute('disabled');
-            console.log('Location shared!');
         })
     })
 });
